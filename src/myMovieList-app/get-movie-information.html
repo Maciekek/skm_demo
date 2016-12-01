@@ -1,5 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
+
 <dom-module id="get-movie-information">
   <template>
 
@@ -37,6 +39,10 @@
       },
       handleResponse: function (res) {
         var response = res.detail.response;
+
+        if(!response.Title){
+          return;
+        }
 
         var movieData = {
           actors: response.Actors,

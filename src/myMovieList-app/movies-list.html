@@ -8,25 +8,39 @@
         display: block;
       }
 
-      .list{
+      .list {
         @apply(--layout-horizontal);
         @apply(--layout-center-justified);
       }
 
       paper-card {
-        height:200px;
+        margin: 30px;
+        padding: 30px 30px 0;
+        height: 200px;
         width: 200px;
       }
-      .title .desc{
-        color:lightgrey;
+
+      .title .desc {
+        color: lightgrey;
+
+      }
+      .title {
+        margin:5px 0 ;
       }
 
     </style>
+    <iron-localstorage name="my-movies"
+                       value="{{moviesList}}"
+                       on-iron-localstorage-load-empty="initializeDefaultMoviesList"
+    ></iron-localstorage>
+
+
     <div class="list">
       <template is="dom-repeat" items="{{moviesList}}" as="movie">
         <paper-card>
           <div class="title"><span class="desc">Title:</span> [[movie.title]]</div>
-          [[movie.actors]]
+          <div class="title"><span class="desc">Actors:</span> [[movie.actors]] </div>
+          <div class="title"><span class="desc">Rating:</span> [[movie.rating]]</div>
         </paper-card>
       </template>
     </div>
@@ -40,7 +54,7 @@
 
       properties: {
         moviesList: {
-          type:Array,
+          type: Array,
           value: []
         },
         newMovie: {
@@ -48,13 +62,17 @@
           observer: "addNewMovie"
         }
       },
-      addNewMovie: function() {
+      addNewMovie: function () {
         console.log("asdasdasd")
         console.log(this.newMovie)
-        if(!this.newMovie.title) {
+        if (!this.newMovie.title) {
           return;
         }
+        console.log(this.newMovie)
         this.push("moviesList", this.newMovie)
+      },
+      initializeDefaultMoviesList: function () {
+        this.moviesList = [];
       }
     });
   </script>
