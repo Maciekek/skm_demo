@@ -1,0 +1,35 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<dom-module id="input-movie-title">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button {
+        width: 100%;
+      }
+    </style>
+
+    <paper-input label="Wpisz nazwę filmu" value="{{movieTitle}}"></paper-input>
+    <paper-button on-tap="_addMovie">Dodaj nowy film</paper-button>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'input-movie-title',
+
+      properties: {
+        movieTitle: String
+      },
+
+      _addMovie: function() {
+        this.fire('add-new-movie', {title: this.movieTitle});
+      }
+
+    });
+  </script>
+</dom-module>
