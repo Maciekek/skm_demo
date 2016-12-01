@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="./input-movie-title.html">
 <link rel="import" href="./get-movie-information.html">
+<link rel="import" href="./movies-list.html">
 <dom-module id="myMovieList-app">
   <template>
     <style>
@@ -17,8 +18,15 @@
     <get-movie-information movie-title="[[movieTitle]]" movie-data="{{movieData}}"></get-movie-information>
 
 
+
+
     <div class="content">
       <input-movie-title></input-movie-title>
+    </div>
+
+
+    <div>
+      <movies-list new-movie="{{newMovieData}}"></movies-list>
     </div>
 
   </template>
@@ -46,7 +54,9 @@
       },
 
       _moveDataChanged: function () {
-        console.log(this.movieData)
+        console.log(this.movieData);
+        this.set("newMovieData", this.movieData)
+
       }
 
 
