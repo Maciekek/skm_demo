@@ -12,8 +12,8 @@
       }
     </style>
 
-    <paper-input label="Wpisz nazwę filmu"></paper-input>
-    <paper-button>Dodaj nowy film</paper-button>
+    <paper-input label="Wpisz nazwę filmu" value="{{movieTitle}}"></paper-input>
+    <paper-button on-tap="_addMovie">Dodaj nowy film</paper-button>
 
   </template>
 
@@ -23,7 +23,12 @@
       is: 'input-movie-title',
 
       properties: {
+        movieTitle: String
       },
+
+      _addMovie: function() {
+        this.fire('add-new-movie', {title: this.movieTitle});
+      }
 
     });
   </script>
