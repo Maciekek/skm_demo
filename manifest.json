@@ -1,0 +1,7 @@
+{
+  "name": "myMovieList",
+  "short_name": "myMovieList",
+  "description": "Short app to save movies list",
+  "start_url": "/",
+  "display": "standalone"
+}
