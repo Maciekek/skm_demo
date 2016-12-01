@@ -32,6 +32,13 @@
           value: 'myMovieList-app',
         },
       },
+      listeners: {
+        "add-new-movie": "_addNewMovie"
+      },
+
+      _addNewMovie: function(e) {
+        console.log(e.detail.title)
+      }
 
     });
   </script>
