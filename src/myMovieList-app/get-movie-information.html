@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<dom-module id="get-movie-information">
+  <template>
+
+    [[searchValue]]
+
+    <iron-ajax
+      auto
+      id="getMovieData"
+      url="http://www.omdbapi.com/?t=[[searchValue]]"
+      handle-as="json"
+      on-response="handleResponse"
+      debounce-duration="300"></iron-ajax>
+
+  </template>
+  <script>
+    Polymer({
+
+      is: 'get-movie-information',
+
+      properties: {
+        movieTitle: {
+          type: String
+        },
+        searchValue: {
+          computed: "_startSearchingMovie(movieTitle)"
+        },
+        movieData: {
+          type: Object,
+          notify:true
+        }
+
+      },
+      _startSearchingMovie: function () {
+        return this.movieTitle;
+      },
+      handleResponse: function (res) {
+        var response = res.detail.response;
+
+        var movieData = {
+          actors: response.Actors,
+          released: response.Released,
+          rating: response.imdbRating,
+          title: response.Title
+
+        };
+
+        this.set("movieData", movieData);
+      }
+
+
+    });
+  </script>
+</dom-module>
