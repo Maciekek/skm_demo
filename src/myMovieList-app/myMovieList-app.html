@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./input-movie-title.html">
 
 <dom-module id="myMovieList-app">
   <template>
@@ -6,8 +7,18 @@
       :host {
         display: block;
       }
+
+      .content {
+        max-width: 1024px;
+        margin: 0 auto;
+      }
     </style>
-    <h2>Hello [[prop1]]</h2>
+
+
+    <div class="content">
+      <input-movie-title></input-movie-title>
+    </div>
+
   </template>
 
   <script>
