@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./input-movie-title.html">
+
+<dom-module id="myMovieList-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .content {
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+    </style>
+
+
+    <div class="content">
+      <input-movie-title></input-movie-title>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'myMovieList-app',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'myMovieList-app',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
