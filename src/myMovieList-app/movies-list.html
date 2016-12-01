@@ -1,0 +1,61 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<dom-module id="movies-list">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+
+      .list{
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+      }
+
+      paper-card {
+        height:200px;
+        width: 200px;
+      }
+      .title .desc{
+        color:lightgrey;
+      }
+
+    </style>
+    <div class="list">
+      <template is="dom-repeat" items="{{moviesList}}" as="movie">
+        <paper-card>
+          <div class="title"><span class="desc">Title:</span> [[movie.title]]</div>
+          [[movie.actors]]
+        </paper-card>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'movies-list',
+
+      properties: {
+        moviesList: {
+          type:Array,
+          value: []
+        },
+        newMovie: {
+          type: Object,
+          observer: "addNewMovie"
+        }
+      },
+      addNewMovie: function() {
+        console.log("asdasdasd")
+        console.log(this.newMovie)
+        if(!this.newMovie.title) {
+          return;
+        }
+        this.push("moviesList", this.newMovie)
+      }
+    });
+  </script>
+</dom-module>
