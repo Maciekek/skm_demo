@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="./input-movie-title.html">
-
+<link rel="import" href="./get-movie-information.html">
 <dom-module id="myMovieList-app">
   <template>
     <style>
@@ -13,6 +13,8 @@
         margin: 0 auto;
       }
     </style>
+
+    <get-movie-information movie-title="[[movieTitle]]" movie-data="{{movieData}}"></get-movie-information>
 
 
     <div class="content">
@@ -27,18 +29,26 @@
       is: 'myMovieList-app',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'myMovieList-app',
+        movieTitle: {
+          type: String
         },
+        movieData: {
+          type: Object,
+          observer: "_moveDataChanged"
+        }
       },
       listeners: {
         "add-new-movie": "_addNewMovie"
       },
 
-      _addNewMovie: function(e) {
-        console.log(e.detail.title)
+      _addNewMovie: function (e) {
+        this.set('movieTitle', e.detail.title);
+      },
+
+      _moveDataChanged: function () {
+        console.log(this.movieData)
       }
+
 
     });
   </script>
